@@ -1,0 +1,316 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/lazd/gulp-csslint#readme"
+
+    >gulp-csslint (v1.0.0)</a>
+</h1>
+<h4>CSSLint plugin for gulp</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.gulp-csslint">module gulp-csslint</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-csslint.addFormatter">
+            function <span class="apidocSignatureSpan">gulp-csslint.</span>addFormatter
+            <span class="apidocSignatureSpan">(formatter)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-csslint.addRule">
+            function <span class="apidocSignatureSpan">gulp-csslint.</span>addRule
+            <span class="apidocSignatureSpan">(rule)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-csslint.failFormatter">
+            function <span class="apidocSignatureSpan">gulp-csslint.</span>failFormatter
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-csslint.formatter">
+            function <span class="apidocSignatureSpan">gulp-csslint.</span>formatter
+            <span class="apidocSignatureSpan">(customFormatter, options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.gulp-csslint" id="apidoc.module.gulp-csslint">module gulp-csslint</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-csslint.addFormatter" id="apidoc.element.gulp-csslint.addFormatter">
+        function <span class="apidocSignatureSpan">gulp-csslint.</span>addFormatter
+        <span class="apidocSignatureSpan">(formatter)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">addFormatter = function (formatter) {
+  formatter = typeof formatter === &#x27;string&#x27; ? require(formatter) : formatter;
+  validateFormatter(formatter);
+
+  csslint.addFormatter(formatter);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+### Custom formatters
+
+Custom formatters can be provided by first adding a valid CSSLint-formatter, such as `csslint-stylish`, then using it:
+
+```js
+var csslint = require(&#x27;gulp-csslint&#x27;);
+
+csslint.<span class="apidocCodeKeywordSpan">addFormatter</span>(&#x27;csslint-stylish&#x27;);
+
+gulp.task(&#x27;lint&#x27;, function() {
+  gulp.src(&#x27;lib/*.css&#x27;)
+    .pipe(csslint())
+    .pipe(csslint.formatter(&#x27;stylish&#x27;))
+});
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-csslint.addRule" id="apidoc.element.gulp-csslint.addRule">
+        function <span class="apidocSignatureSpan">gulp-csslint.</span>addRule
+        <span class="apidocSignatureSpan">(rule)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">addRule = function (rule) {
+  if (typeof rule !== &#x27;object&#x27;) {
+    throw new Error(&#x27;Invalid rule: rules need to be objects.&#x27;);
+  }
+  csslint.addRule(rule);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+});
+```
+
+This functionality is only available when not using a custom formatting function.
+
+## Custom rules
+
+Use the `csslint.<span class="apidocCodeKeywordSpan">addRule</span>(rule)` method to define custom rules that run in addition to
+ the rules defined in the csslintrc file. See [Working with Rules](https://github.com/CSSLint/csslint/wiki/Working-with-Rules) for
+ details.
+
+```js
+var csslint = require(&#x27;gulp-csslint&#x27;);
+
+csslint.addRule({
+  // rule information
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-csslint.failFormatter" id="apidoc.element.gulp-csslint.failFormatter">
+        function <span class="apidocSignatureSpan">gulp-csslint.</span>failFormatter
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">failFormatter = function () {
+  return through.obj(function(file, enc, cb) {
+    // Nothing to report or no errors
+    if (!file.csslint || file.csslint.success) {
+      return cb(null, file);
+    }
+
+    return cb(new gutil.PluginError(&#x27;gulp-csslint&#x27;, &#x27;CSSLint failed for &#x27; + file.relative), file);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  .pipe(csslint())
+  .pipe(csslint.formatter())
+});
+```
+
+## Fail on errors
+
+Pipe the file stream to `csslint.<span class="apidocCodeKeywordSpan">failFormatter</span>()` to fail on errors.
+
+```js
+var csslint = require(&#x27;gulp-csslint&#x27;);
+
+gulp.task(&#x27;lint&#x27;, function() {
+gulp.src(&#x27;lib/*.css&#x27;)
+  .pipe(csslint())
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-csslint.formatter" id="apidoc.element.gulp-csslint.formatter">
+        function <span class="apidocSignatureSpan">gulp-csslint.</span>formatter
+        <span class="apidocSignatureSpan">(customFormatter, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">formatter = function (customFormatter, options) {
+  var formatter = csslint.getFormatter(&#x27;text&#x27;);
+  var builtInFormatter = true;
+  var output;
+
+  options = options || {};
+
+  var logger = options.logger || process.stdout.write.bind(process.stdout);
+  if (customFormatter) {
+    if (typeof customFormatter === &#x27;function&#x27;) {
+      formatter = customFormatter;
+      builtInFormatter = false;
+    }
+    else if (typeof customFormatter === &#x27;string&#x27;) {
+      if (customFormatter === &#x27;fail&#x27;) {
+        return cssLintPlugin.failFormatter();
+      }
+
+      formatter = csslint.getFormatter(customFormatter);
+
+      if (typeof formatter === &#x27;undefined&#x27;) {
+        throw new Error(&#x27;Invalid reporter: &#x27; + customFormatter);
+      }
+    }
+    else if (typeof customFormatter === &#x27;object&#x27;) {
+      validateFormatter(customFormatter);
+      formatter = customFormatter;
+    }
+    else {
+      throw new Error(&#x27;Invalid custom formatter passed, please pass `null` or `undefined` if you want to pass options while using
+ default formatter.&#x27;);
+    }
+  }
+
+  if (builtInFormatter) {
+    output = [formatter.startFormat()];
+  }
+
+  return through.obj(
+    function(file, enc, cb) {
+      // Only report if CSSLint was ran and errors were found
+      if (file.csslint &#x26;&#x26; !file.csslint.success) {
+        if (builtInFormatter) {
+          output.push(formatter.formatResults(file.csslint.report, file.path, options));
+        }
+        else {
+          formatter(file.csslint.report, file.path, options);
+        }
+      }
+
+      return cb(null, file);
+    },
+    function(cb) {
+      if (builtInFormatter) {
+        output.push(formatter.endFormat());
+
+        output
+          .filter(function(str) {
+            return str;
+          })
+          .forEach(logger);
+      }
+
+      return cb();
+    }
+  ).resume(); // Force flow-mode https://nodejs.org/docs/latest/api/stream.html#stream_event_end
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+```js
+var csslint = require(&#x27;gulp-csslint&#x27;);
+
+gulp.task(&#x27;css&#x27;, function() {
+  gulp.src(&#x27;client/css/*.css&#x27;)
+    .pipe(csslint())
+    .pipe(csslint.<span class="apidocCodeKeywordSpan">formatter</span>());
+});
+```
+
+## API
+
+### csslint(ruleConfiguration)
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
