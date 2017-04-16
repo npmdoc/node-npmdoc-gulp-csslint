@@ -56,6 +56,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-csslint.gulp-csslint">
+            function <span class="apidocSignatureSpan"></span>gulp-csslint
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <a class="apidocElementLiA" href="#apidoc.element.gulp-csslint.addFormatter">
             function <span class="apidocSignatureSpan">gulp-csslint.</span>addFormatter
             <span class="apidocSignatureSpan">(formatter)</span>
@@ -90,12 +99,72 @@
 
         </li>
 
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-csslint.toString">
+            function <span class="apidocSignatureSpan">gulp-csslint.</span>toString
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
     </ol></li>
 
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.gulp-csslint" id="apidoc.module.gulp-csslint">module gulp-csslint</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-csslint.gulp-csslint" id="apidoc.element.gulp-csslint.gulp-csslint">
+        function <span class="apidocSignatureSpan"></span>gulp-csslint
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">gulp-csslint = function (options) {
+  options = options || {};
+  var rcLoader = new RcLoader('.csslintrc', options, { loader: 'async' });
+  return through.obj(function(file, enc, cb) {
+    if (file.isNull()) return cb(null, file); // pass along
+    if (file.isStream()) return cb(new gutil.PluginError('gulp-csslint: Streaming not supported'), file);
+
+    var ruleset = {};
+    // Build a list of all available rules
+    csslint.getRules().forEach(function(rule) {
+      ruleset[rule.id] = 1;
+    });
+
+    var content = file.contents.toString(enc);
+
+    if (!content) return cb(null, file); // pass along
+
+    rcLoader.for(file.path, function(err, opts) {
+      if (err) return cb(err);
+
+      for (var rule in opts) {
+        if (!opts[rule]) {
+          // Remove rules that are turned off
+          delete ruleset[rule];
+        }
+        else {
+          ruleset[rule] = opts[rule];
+        }
+      }
+
+      var report = csslint.verify(content, ruleset);
+
+      // send status down-stream
+      file.csslint = { report: report, success: !report.messages.length };
+
+      cb(null, file);
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 
     <h2>
@@ -295,6 +364,37 @@ gulp.task('css', function() {
 ## API
 
 ### csslint(ruleConfiguration)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-csslint.toString" id="apidoc.element.gulp-csslint.toString">
+        function <span class="apidocSignatureSpan">gulp-csslint.</span>toString
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">toString = function () {
+    return toString;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    var ruleset = {};
+    // Build a list of all available rules
+    csslint.getRules().forEach(function(rule) {
+ruleset[rule.id] = 1;
+    });
+
+    var content = file.contents.<span class="apidocCodeKeywordSpan">toString</span>(enc);
+
+    if (!content) return cb(null, file); // pass along
+
+    rcLoader.for(file.path, function(err, opts) {
+if (err) return cb(err);
+
+for (var rule in opts) {
 ...</pre></li>
     </ul>
 
