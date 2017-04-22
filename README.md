@@ -1,6 +1,6 @@
 # npmdoc-gulp-csslint
 
-#### api documentation for  gulp-csslint (v1.0.0)  [![npm package](https://img.shields.io/npm/v/npmdoc-gulp-csslint.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-gulp-csslint) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-gulp-csslint.svg)](https://travis-ci.org/npmdoc/node-npmdoc-gulp-csslint)
+#### api documentation for  [gulp-csslint (v1.0.0)](https://github.com/lazd/gulp-csslint#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-gulp-csslint.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-gulp-csslint) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-gulp-csslint.svg)](https://travis-ci.org/npmdoc/node-npmdoc-gulp-csslint)
 
 #### CSSLint plugin for gulp
 
@@ -21,19 +21,19 @@
 ```json
 
 {
-    "name": "gulp-csslint",
-    "version": "1.0.0",
-    "description": "CSSLint plugin for gulp",
-    "main": "index.js",
-    "files": [
-        "index.js"
-    ],
+    "author": {
+        "name": "Larry Davis"
+    },
+    "bugs": {
+        "url": "https://github.com/lazd/gulp-csslint/issues"
+    },
     "dependencies": {
         "csslint": "^1.0.2",
         "gulp-util": "^3.0.7",
         "rcloader": "^0.2.1",
         "through2": "^2.0.1"
     },
+    "description": "CSSLint plugin for gulp",
     "devDependencies": {
         "coveralls": "^2.11.12",
         "csslint-stylish": "0.0.4",
@@ -49,31 +49,47 @@
         "should": "^11.0.0",
         "sinon": "^1.17.5"
     },
-    "scripts": {
-        "clean": "rimraf coverage/ .nyc_output/",
-        "cover": "nyc mocha",
-        "postcover": "nyc report --reporter lcov",
-        "lint": "node-version-gte-4 && eslint index.js test/main.js || node-version-lt-4",
-        "precover": "npm run lint && npm run clean",
-        "pretest": "npm run lint",
-        "test": "mocha"
+    "directories": {},
+    "dist": {
+        "shasum": "d95a56f7719466147fa9a07302fdba1690391523",
+        "tarball": "https://registry.npmjs.org/gulp-csslint/-/gulp-csslint-1.0.0.tgz"
     },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/lazd/gulp-csslint.git"
+    "engines": {
+        "node": ">=0.10"
     },
+    "files": [
+        "index.js"
+    ],
+    "gitHead": "371a4ce3825be7cc92e0f2dc789afe48bcfce091",
+    "homepage": "https://github.com/lazd/gulp-csslint#readme",
     "keywords": [
         "csslint",
         "gulpplugin"
     ],
-    "author": "Larry Davis <lazdnet@gmail.com>",
     "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/lazd/gulp-csslint/issues"
+    "main": "index.js",
+    "maintainers": [
+        {
+            "name": "lazd"
+        }
+    ],
+    "name": "gulp-csslint",
+    "optionalDependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/lazd/gulp-csslint.git"
     },
-    "engines": {
-        "node": ">=0.10"
-    }
+    "scripts": {
+        "clean": "rimraf coverage/ .nyc_output/",
+        "cover": "nyc mocha",
+        "lint": "node-version-gte-4 && eslint index.js test/main.js || node-version-lt-4",
+        "postcover": "nyc report --reporter lcov",
+        "precover": "npm run lint && npm run clean",
+        "pretest": "npm run lint",
+        "test": "mocha"
+    },
+    "version": "1.0.0",
+    "bin": {}
 }
 ```
 
